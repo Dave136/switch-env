@@ -1,3 +1,4 @@
+mod git;
 mod log;
 mod workspace;
 
@@ -16,10 +17,12 @@ fn main() -> IoResult<()> {
         .get_matches();
 
     if program.is_present("env") {
+        let mut workspace = Workspace::new();
+
         match program.value_of("env") {
             Some(value) => match value {
-                "personal" => Workspace::create_config(Env::Personal)?,
-                "work" => Workspace::create_config(Env::Work)?,
+                "personal" => workspace.create_config(Env::Personal)?,
+                "work" => workspace.create_config(Env::Work)?,
                 _ => Log::error("Not valid workspace"),
             },
             None => Log::error("Please, provide an valid option"),

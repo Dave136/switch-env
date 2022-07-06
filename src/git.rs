@@ -3,7 +3,7 @@ use home::home_dir;
 use std::env;
 use std::fs;
 use std::path::{Path, PathBuf};
-use std::str::FromStr;
+// use std::str::FromStr;
 
 const USER_EMAIL: &str = "user.email";
 const USER_NAME: &str = "user.name";
@@ -82,9 +82,20 @@ impl Git {
     where
         P: AsRef<Path>,
     {
-        let mut cwd = env::current_dir().unwrap();
+        let mut cwd = home_dir().unwrap();
+        cwd.push(".switch-env");
         cwd.push("tmp");
         cwd.push("gitconfig_backup");
+
+        let path_exists = Path::new(&cwd).exists();
+
+        // If not exist, we create the directory to avoid errors
+        if !path_exists {
+            let mut dir = home_dir().unwrap();
+            dir.push(".switch-env");
+            dir.push("tmp");
+            fs::create_dir_all(&dir).unwrap();
+        }
 
         fs::copy(&config_path, &cwd).unwrap();
     }

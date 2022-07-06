@@ -15,7 +15,11 @@ impl Log {
         println!("{}", message.green().bold());
     }
 
+    pub fn success_custom(one: &str, two: &str) {
+        println!("{} {}", one.green().bold(), two.normal());
+    }
+
     pub fn status(message: &str) {
-        println!("{} {}", "● Env:".green().bold(), message.normal());
+        println!("{} {}", "● env:".green().bold(), message.normal());
     }
 }

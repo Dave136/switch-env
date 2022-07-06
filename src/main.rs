@@ -31,11 +31,15 @@ fn main() -> IoResult<()> {
         return Ok(());
     }
 
-    match program.occurrences_of("status") {
-        0 => Log::info("No showing status"),
-        1 => Workspace::show_status()?,
-        _ => Log::error("No more occurrences allowed!"),
-    };
+    if program.is_present("status") {
+        let mut workspace = Workspace::new();
+
+        match program.occurrences_of("status") {
+            0 => Log::info("No showing status"),
+            1 => workspace.show_status()?,
+            _ => Log::error("No more occurrences allowed!"),
+        };
+    }
 
     Ok(())
 }

@@ -1,6 +1,5 @@
 use git2::Config;
 use home::home_dir;
-use std::env;
 use std::fs;
 use std::path::{Path, PathBuf};
 // use std::str::FromStr;

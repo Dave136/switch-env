@@ -1,5 +1,4 @@
-# switch-env  🚧
-> This project is in construction
+# switch-env 🚀
 > 
 A simple cli made with rust to switch between workspace environments
 
@@ -24,10 +23,6 @@ And finally you can check with:
 ```sh
 $ cargo run -- -s
 ```
-
-### Goals
-- [ ] Read config from json file
-- [ ] Enable more environments
 
 ### License
 
